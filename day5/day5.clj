@@ -1,0 +1,5 @@
+(def polymer (slurp "./input.txt"))
+(def codes (map int polymer))
+(defn react? [a b] (and (some? a) (= (bit-xor a b) 0x20)))
+(defn r [acc c] (if (react? (last acc) c) (pop acc) (conj acc c)))
+(println (count (reduce r [] codes)))
